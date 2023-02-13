@@ -19,7 +19,8 @@ public class InMemoryToDoListDao : IToDoListDao
 
     public IEnumerable<ToDoItem> GetByPartOfName(string partOfName)
     {
-        return _toDoList.Where(x => x.Name.Contains(partOfName));
+        return _toDoList.Where(toDoItem
+            => toDoItem.Name.Contains(partOfName));
     }
 
     public bool Delete(int id)
@@ -34,10 +35,14 @@ public class InMemoryToDoListDao : IToDoListDao
         return false;
     }
 
-    public void Add(ToDoItem item)
+    public int Add(ToDoItem item)
     {
+        //HACK: sorry!
+        //TODO: add synchronization
+        var newIdUsed = _nextId;
         item.Id = _nextId++;
         _toDoList.Add(item);
+        return newIdUsed;
     }
 
     public bool Update(ToDoItem item)

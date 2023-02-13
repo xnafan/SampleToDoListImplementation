@@ -11,7 +11,7 @@ namespace ToDoListDAL
         ToDoItem GetById(int id);
         IEnumerable<ToDoItem> GetByPartOfName(string partOfName);
         bool Delete(int id);
-        void Add(ToDoItem item);
+        int Add(ToDoItem item);
         bool Update(ToDoItem item);
     }
 }
