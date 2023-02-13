@@ -4,6 +4,7 @@ namespace ToDoListDAL.InMemory;
 
 public class InMemoryToDoListDao : IToDoListDao
 {
+    private int _nextId = 1;
     private List<ToDoItem> _toDoList = new List<ToDoItem>();
 
     public IEnumerable<ToDoItem> GetAll()
@@ -35,6 +36,7 @@ public class InMemoryToDoListDao : IToDoListDao
 
     public void Add(ToDoItem item)
     {
+        item.Id = _nextId++;
         _toDoList.Add(item);
     }
 
