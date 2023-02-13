@@ -6,7 +6,12 @@ public class InMemoryToDoListDao : IToDoListDao
 {
     private int _nextId = 1;
     private List<ToDoItem> _toDoList = new List<ToDoItem>();
-
+    public InMemoryToDoListDao()
+    {
+        Add(new ToDoItem("Brush your teeth"));
+        Add(new ToDoItem("Mow the lawn"));
+        Add(new ToDoItem("Write Valentine's card"));
+    }
     public IEnumerable<ToDoItem> GetAll()
     {
         return _toDoList;

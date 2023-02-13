@@ -6,6 +6,7 @@ namespace ToDoTests
     public class Tests
     {
         private InMemoryToDoListDao _toDoListDao = new();
+        Guid _testId = Guid.NewGuid();
         
         [SetUp]
         public void Setup()
@@ -18,7 +19,7 @@ namespace ToDoTests
         [Test]
         public void AddAndFindAgain()
         {
-            string taskName = "Task for test";
+            string taskName = "Task for test" + _testId;
             //arrange
             //act
             var newId = _toDoListDao.Add(new ToDoItem(taskName));
