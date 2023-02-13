@@ -38,12 +38,16 @@ public class InMemoryToDoListDao : IToDoListDao
         _toDoList.Add(item);
     }
 
-    public void Update(ToDoItem item)
+    public bool Update(ToDoItem item)
     {
-        var index = _toDoList.FindIndex(x => x.Id == item.Id);
-        if (index != -1)
+        var foundItem = GetById(item.Id);
+        if(foundItem != null)
         {
-            _toDoList[index] = item;
+            foundItem.Name = item.Name;
+            foundItem.Description = item.Description;
+            foundItem.DueDate = item.DueDate;
+            foundItem.Done = item.Done;
         }
+        return foundItem != null;
     }
 }
